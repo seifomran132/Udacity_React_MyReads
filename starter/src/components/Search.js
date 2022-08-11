@@ -5,8 +5,8 @@ import Error from "./Error";
 
 function Search(props) {
   const [searchResult, setSearchResult] = useState([]);
-
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const search = async () => {
@@ -15,34 +15,48 @@ function Search(props) {
         setSearchResult(result);
       } else {
         setSearchResult([]);
+        setError(true);
       }
+      
     };
 
+
+    // debouncing before sending the request improve performance
     const searchTimeout = setTimeout(() => {
       if (inputValue) {
         search();
       }
-    }, 500);
+    }, 200);
+
+    // Cleaning the timeout
     return () => {
       clearTimeout(searchTimeout);
     };
   }, [inputValue]);
 
+  
+
   function searchInputHandler(e) {
+    if(e.target.value === "") {
+      
+      setError(false)
+      setSearchResult([])
+    }
+
     setInputValue(e.target.value);
   }
 
   let searchResultBooks;
 
   
-  if (searchResult.length === 0) {
+  if (error) {
     searchResultBooks = (
       <Error title="Error 404" msg="Sorry we couldn't find this item"></Error>
     );
   } else {
     searchResultBooks = searchResult.map((myBook) => (
       <li key={myBook.id}>
-        <Book book={myBook}></Book>
+        <Book book={myBook} changeShelf={props.changeShelf}></Book>
       </li>
     ));
   }

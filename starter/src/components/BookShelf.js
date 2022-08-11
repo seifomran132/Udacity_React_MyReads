@@ -2,9 +2,12 @@ import React from "react";
 import Book from "./Book";
 
 function BookShelf(props) {
+
+  
+
   let shelfBooks = props.books.filter(book=>book.shelf === props.shelf).map((myBook)=>{
     return (
-        <li key={myBook.id}><Book book={myBook}></Book></li>
+        <li key={myBook.id}><Book book={myBook} changeShelf={props.changeShelf}></Book></li>
     );
   })
 

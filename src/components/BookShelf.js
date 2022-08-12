@@ -7,7 +7,7 @@ function BookShelf(props) {
     .map((myBook) => {
       return (
         <li key={myBook.id}>
-          <Book book={myBook} ShelfChanger={props.ShelfChanger}></Book>
+          <Book book={myBook} ShelfChanger={props.ShelfChanger} books={props.books}></Book>
         </li>
       );
     });

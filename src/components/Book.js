@@ -11,7 +11,7 @@ function Book(props) {
     imageUrl = noImage;
   }
 
-  return (
+    return (
     <div className="book">
       <div className="book-top">
         <div
@@ -23,7 +23,7 @@ function Book(props) {
           }}
         ></div>
         <div className="book-shelf-changer">
-          <SelectShelf ShelfChanger={props.ShelfChanger} book={props.book} />
+          <SelectShelf ShelfChanger={props.ShelfChanger} book={props.book} books={props.books} />
         </div>
       </div>
       <div className="book-title">{props.book.title}</div>

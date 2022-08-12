@@ -29,7 +29,7 @@ function App() {
         <Route
           path="search"
           exact
-          element={<Search ShelfChanger={ShelfChanger} />}
+          element={<Search ShelfChanger={ShelfChanger} books={allBooks}/>}
         />
         <Route
           path="/"

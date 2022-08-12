@@ -52,7 +52,7 @@ function Search(props) {
   } else {
     searchResultBooks = searchResult.map((myBook) => (
       <li key={myBook.id}>
-        <Book book={myBook} ShelfChanger={props.ShelfChanger}></Book>
+        <Book book={myBook} ShelfChanger={props.ShelfChanger} books={props.books}></Book>
       </li>
     ));
   }

@@ -5,8 +5,18 @@ function SelectShelf(props) {
     props.ShelfChanger(props.book, e.target.value);
   }
 
+  
+
+  
+    let shelfValue = "none";
+    
+    if(props.books.find((book)=>book.id === props.book.id)) {
+      shelfValue = props.books.find((book)=>book.id === props.book.id).shelf;
+    }
+    
+
   return (
-    <select onChange={ShelfChanger} defaultValue="none">
+    <select onChange={ShelfChanger} defaultValue={shelfValue}>
       <option value="none" disabled>
         Move to...
       </option>

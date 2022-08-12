@@ -1,11 +1,18 @@
 import React from "react";
 import SelectShelf from "./SelectShelf";
+import noImage from "../icons/noimage.jpg"
 
 function Book(props) {
 
 
-  
+  let imageUrl;
 
+  if(props.book.imageLinks) {
+    imageUrl = props.book.imageLinks.thumbnail
+  }
+  else {
+    imageUrl = noImage
+  }
 
   return (
     <div className="book">
@@ -15,7 +22,7 @@ function Book(props) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url("${props.book.imageLinks.thumbnail}")`,
+            backgroundImage: `url("${imageUrl}")`,
           }}
         ></div>
         <div className="book-shelf-changer">

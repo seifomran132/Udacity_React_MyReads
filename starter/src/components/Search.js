@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as API from "../API/BooksAPI";
 import Book from "./Book";
 import Error from "./Error";
+import { Link } from "react-router-dom";
 
 function Search(props) {
   const [searchResult, setSearchResult] = useState([]);
@@ -9,17 +10,17 @@ function Search(props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+
     const search = async () => {
       const result = await API.search(inputValue, 20);
       if (Array.isArray(result)) {
+        setError(false);
         setSearchResult(result);
       } else {
-        setSearchResult([]);
         setError(true);
+        setSearchResult([]);
       }
-      
     };
-
 
     // debouncing before sending the request improve performance
     const searchTimeout = setTimeout(() => {
@@ -34,21 +35,17 @@ function Search(props) {
     };
   }, [inputValue]);
 
-  
-
   function searchInputHandler(e) {
-    if(e.target.value === "") {
-      
-      setError(false)
-      setSearchResult([])
+    if (e.target.value === "") {
+      setError(false);
+      setSearchResult([]);
     }
-
+    
     setInputValue(e.target.value);
   }
 
   let searchResultBooks;
 
-  
   if (error) {
     searchResultBooks = (
       <Error title="Error 404" msg="Sorry we couldn't find this item"></Error>
@@ -61,14 +58,12 @@ function Search(props) {
     ));
   }
 
-  
-
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <button className="close-search" onClick={() => props.searchToggler()}>
+        <Link to="/" className="close-search">
           Close
-        </button>
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"

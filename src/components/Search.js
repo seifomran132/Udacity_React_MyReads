@@ -10,7 +10,6 @@ function Search(props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-
     const search = async () => {
       const result = await API.search(inputValue, 20);
       if (Array.isArray(result)) {
@@ -40,7 +39,7 @@ function Search(props) {
       setError(false);
       setSearchResult([]);
     }
-    
+
     setInputValue(e.target.value);
   }
 
@@ -53,7 +52,7 @@ function Search(props) {
   } else {
     searchResultBooks = searchResult.map((myBook) => (
       <li key={myBook.id}>
-        <Book book={myBook} changeShelf={props.changeShelf}></Book>
+        <Book book={myBook} ShelfChanger={props.ShelfChanger}></Book>
       </li>
     ));
   }

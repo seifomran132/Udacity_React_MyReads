@@ -16,9 +16,7 @@ function App() {
     booksFn();
   }, []);
 
-  
-
-  function changeShelf(book, shelf) {
+  function ShelfChanger(book, shelf) {
     API.update(book, shelf);
     book.shelf = shelf;
     let newBooks = allBooks.filter((myBook) => myBook.id !== book.id);
@@ -31,11 +29,7 @@ function App() {
         <Route
           path="search"
           exact
-          element={
-            <Search
-              changeShelf={changeShelf}
-            />
-          }
+          element={<Search ShelfChanger={ShelfChanger} />}
         />
         <Route
           path="/"
@@ -43,7 +37,7 @@ function App() {
           element={
             <HomeScreen
               allBooks={allBooks}
-              changeShelf={changeShelf}
+              ShelfChanger={ShelfChanger}
             ></HomeScreen>
           }
         />

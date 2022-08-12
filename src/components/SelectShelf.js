@@ -1,12 +1,12 @@
 import React from "react";
 
 function SelectShelf(props) {
-  function changeShelf(e) {
-    props.changeShelf(props.book, e.target.value);
+  function ShelfChanger(e) {
+    props.ShelfChanger(props.book, e.target.value);
   }
 
   return (
-    <select onChange={changeShelf} defaultValue="none">
+    <select onChange={ShelfChanger} defaultValue="none">
       <option value="none" disabled>
         Move to...
       </option>
